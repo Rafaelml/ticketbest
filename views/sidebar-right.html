@@ -1,0 +1,23 @@
+<?php
+if(!isset($_SESSION)){
+session_start();
+}
+?>
+<div id="sidebar-right">
+  <?php
+    if (isset($_SESSION["login"]) && ($_SESSION["login"]===true) && isset($_SESSION['usuario']) != null && $_SESSION['tipo'] == 'usuario'){
+	   if(isset($_SESSION['usuario'])) {
+            echo 'Tus cantantes favoritos:';
+            echo Controller::verTusCantantes($_SESSION['idUser']);
+}
+}
+else{
+echo 'Cantantes con más seguidores:';
+echo Controller::verAbsCantantes();
+}
+?>
+</div>
+</div>
+
+
+

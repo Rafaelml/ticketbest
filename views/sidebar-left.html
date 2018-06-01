@@ -1,0 +1,27 @@
+<?php
+	if(!isset($_SESSION)){
+	session_start();
+	}
+?>
+<div id="sidebar-left">
+    <h3>Navegación</h3>
+    <ul>
+        <?php
+	    if(!isset($_SESSION['tipo']) ){
+	        echo' <li><a href="contenedor.php">Inicio</a></li>';
+            echo '<li><a href="contenedor.php">Conciertos</a></li>';
+            echo '<li><a href="contenedor.php?$opcion=registrarse">Registro</a></li>';
+	    }
+        elseif($_SESSION['tipo'] === 'usuario'){
+            echo '<li><a href="contenedor.php?$opcion=vercantantes">Cantantes</a></li>';
+            echo '<li><a href="contenedor.php">Conciertos</a></li>';
+        }
+        else{
+        echo '<li><a href="contenedor.php?$opcion=adminconciertos">Administrar Conciertos</a></li>';
+        echo '<li><a href="contenedor.php?$opcion=adminUser">Administrar Usuarios</a></li>';
+        echo '<li><a href="contenedor.php?$opcion=admincantantes">Administrar Cantantes</a></li>';
+        }
+        ?>
+
+    </ul>
+</div>

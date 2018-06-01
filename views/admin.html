@@ -1,0 +1,34 @@
+<?php session_start(); ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+	<meta charset="utf-8">
+	<title>Portada</title>
+</head>
+
+<body>
+
+<div id="contenedor">
+
+	<?php 
+		require("cabecera.html");
+		require("sidebar-left.html");
+	?>
+
+	<div id="contenido">		
+	<p>Cantantes</p>
+	<p>Conciertos</p>
+	<p>Usuarios</p>
+	</div>
+
+	<?php 
+		include("sidebar-right.html");
+		include("pie.html");
+	?>
+
+</div> <!-- Fin del contenedor -->
+
+</body>
+</html>

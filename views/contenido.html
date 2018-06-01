@@ -1,0 +1,74 @@
+<?php
+if(!isset($_SESSION)){
+session_start();
+}
+?>
+<div id="contenido">
+    <?php
+        require_once ("../controllers/Controller.php");
+		if(!isset($_GET['$opcion'])){
+		   echo '<h1>Conciertos Principales</h1>
+            <p></p>';
+            echo Controller::verNoRConciertos();
+		}
+        elseif($_GET['$opcion'] == 'login'){
+            echo '<form action="../controllers/controllerLogin.php" method="POST">
+                    <fieldset><legend>Usuario y contraseña</legend>
+                    <p><label>Name:</label> <input type="text" name="username" /></p>
+                    <p><label>Password:</label> <input type="password" name="password" /></p>
+                    <button type="submit">Entrar</button>
+                    </fieldset>
+                    </form>';
+            }
+        elseif($_GET['$opcion'] == 'registrarse'){
+            echo '<h1>Registro de nuevo usuario</h1>
+                    <form action="../controllers/controllerRegistro.php" method="POST">
+                    <fieldset>
+                    <legend>Datos del usuario</legend>
+                    <p><label>Correo:</label> <input type="text" name="email" id="campoEmail" /> <img id="correoOK" src="../added/img/ok.png" /> <img id="correoMal" src="../added/img/nook.png" /></p>
+                    <p><label>Usuario:</label> <input type="text" name="nick" id="campoUser" /> <img id="userOK" src="../added/img/ok.png" /> <img id="userMal" src="../added/img/nook.png" /></p>
+                    <p><label>Name:</label> <input type="text" name="name" /><br /></p>
+                    <p><label>Télefono:</label> <input type="text" name="tel" /><br /></p>
+                    <p><label>Password:</label> <input type="password" name="pass" /><br /></p>
+                    <p><label>Repeat Password:</label> <input type="password" name="repass" /><br /></p>
+                    <button type="submit">Enviar</button>
+                    </fieldset>
+                    </form>';
+    }
+    elseif($_GET['$opcion'] == 'admincantantes'){
+            echo '<h1>Administrar Cantantes</h1>';
+            echo Controller::obtCantantes();
+            echo '<form action="../controllers/controllerCantantes.php" method="POST">
+                    <fieldset><legend>Agregar cantantes</legend>
+                    <p><label>Nombre:</label> <input type="text" name="username" /></p>
+                    <button type="submit">Agregar</button>
+                    </fieldset>
+                    </form>';
+    }
+    elseif($_GET['$opcion'] == 'vercantantes'){
+        echo '<h1>Todos los cantantes que no sigues y deberías conocer:</h1>';
+        echo Controller::verCantantes($_SESSION['idUser']);
+    }
+    elseif($_GET['$opcion'] == 'adminconciertos'){
+    echo '<h1>Administrar Conciertos</h1>';
+    echo Controller::obtConciertos();
+    echo '<form action="../controllers/ControllerConciertos.php" method="POST">
+    <fieldset><legend>Agregar conciertos</legend>
+        <p><label>Nombre:</label> <input type="text" name="username" /></p>
+        <p><label>Cantante:</label> <input type="text" name="cantante" /></p>
+        <p><label>Lugar:</label> <input type="text" name="lugar" /></p>
+        <p><label>Fecha:</label> <input type="date" name="fecha" /></p>
+        <button type="submit">Agregar Concierto</button>
+    </fieldset>
+</form>';
+    }
+    elseif($_GET['$opcion'] == 'adminUser'){
+    echo '<h1>Administrar Usuarios</h1>';
+    echo Controller::adminUser();
+    }
+    else{
+
+    }
+
+    ?>
+</div>
